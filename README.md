@@ -1,6 +1,6 @@
 # Databricks Data Engineering Project — Atliqon and SportsBar Orders Pipeline
 
-## Overview
+## 📌 Overview
 End-to-end pipeline ingesting raw CSV order data from AWS S3 into 
 a Delta Lake medallion architecture (Bronze → Silver → Gold) using 
 PySpark on Databricks.
@@ -14,7 +14,7 @@ consistent and metrics needs to be matched. A unified data layer with consistent
 from both companies needs to be made to drive business decisions. 
 
 
-## Tech Stack
+## 🛠️ Tech Stack
 - Databricks (PySpark, Delta Lake)
 - AWS S3 (external storage)
 - Unity Catalog (data governance)
@@ -23,28 +23,30 @@ from both companies needs to be made to drive business decisions.
 
 ## 🏗️ Architecture
 **S3 Landing → Bronze → Silver → Gold**
-
+(this corresponds to child company data)
 - **Bronze**: raw ingested data  
 - **Silver**: cleaned and standardized data  
-- **Gold**: aggregated, business-ready datasets  
+- **Gold**: aggregated, business-ready datasets
+- **Merge with Gold Layer of Parent company data**: atlikon and sportsbar data is merged.
 
-![Architecture Diagram](data_architecture.png)
 
 
-**Folder structure:**
+## 📂 Project Structure
 
+```
 databricks-project/
 ├── README.md
 ├── consolidate_pipeline/
-│   ├── Setup
-│       ├──Setupcatalogs.ipynb
-│       ├──dim_data_table_creation.ipynb
-│       ├──utilities.ipynb
-│   ├── Dimension Data Processing
-│       ├──customer_data_processing.ipynb
-│       ├──2_product_data_processing.ipynb
-│       ├──3_pricing_data_processing.ipynb
-│   ├── 03_fact_data_processing
-│       ├──01_full_load_fact.ipynb
-│       ├──2_incremental_load_fact.ipynb       
-└── data_architecture.png     
+│   ├── Setup/
+│   │   ├── Setupcatalogs.ipynb
+│   │   ├── dim_data_table_creation.ipynb
+│   │   ├── utilities.ipynb
+│   ├── Dimension Data Processing/
+│   │   ├── customer_data_processing.ipynb
+│   │   ├── product_data_processing.ipynb
+│   │   ├── pricing_data_processing.ipynb
+│   ├── Fact Data Processing/
+│   │   ├── full_load_fact.ipynb
+│   │   ├── incremental_load_fact.ipynb
+└── data_architecture.png
+```
